@@ -21,7 +21,7 @@ EOF
 
 kubectl --kubeconfig=/etc/kubernetes/ssl/kubeconfig create -f /tmp/rancher-service-account.yaml || true 
 
-for f in $(find /etc/kubernetes/addons -name '*.yaml'); do
+for f in $(find /etc/kubernetes/addons -regex '.*\.yaml\|.*\.yml'); do
   kubectl --kubeconfig=/etc/kubernetes/ssl/kubeconfig --namespace=kube-system replace --force -f ${f}
 done
 
