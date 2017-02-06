@@ -23,7 +23,7 @@ spec:
         - mountPath: /data
           name: influxdb-storage
       - name: grafana
-        image: gcr.io/google_containers/heapster_grafana:v2.6.0-2
+        image: registry.cn-hangzhou.aliyuncs.com/google-containers/heapster_grafana:v2.6.0-2
         env:
           - name: INFLUXDB_SERVICE_URL
             value: http://monitoring-influxdb.kube-system.svc.cluster.local:8086
