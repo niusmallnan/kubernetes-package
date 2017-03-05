@@ -1,5 +1,7 @@
 FROM debian:jessie
 
+ADD .apt.sources.list /etc/apt/sources.list
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive apt-get -yy -q \
     install \
