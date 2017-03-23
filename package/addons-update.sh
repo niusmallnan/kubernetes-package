@@ -23,10 +23,12 @@ kubectl --kubeconfig=/etc/kubernetes/ssl/kubeconfig create -f /tmp/rancher-servi
 
 GCR_IO_REGISTRY=${REGISTRY:-gcr.io}
 DOCKER_IO_REGISTRY=${REGISTRY:-docker.io}
+ADDONS_IMAGE_NAMESPACE=${ADDONS_IMAGE_NAMESPACE:-google_containers}
 
 for f in $(find /etc/kubernetes/addons -name '*.yaml'); do
   sed -i "s/\$GCR_IO_REGISTRY/$GCR_IO_REGISTRY/g" ${f}
   sed -i "s/\$DOCKER_IO_REGISTRY/$DOCKER_IO_REGISTRY/g" ${f}
+  sed -i "s/\$ADDONS_IMAGE_NAMESPACE/$ADDONS_IMAGE_NAMESPACE/g" ${f}
   kubectl --kubeconfig=/etc/kubernetes/ssl/kubeconfig --namespace=kube-system replace --force -f ${f}
 done
 
